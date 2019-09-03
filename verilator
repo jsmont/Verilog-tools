@@ -1,11 +1,5 @@
 #!/bin/bash
 
-pushd $(dirname $0) &>/dev/null
-REPOROOT=$(git rev-parse --show-toplevel)
-CONTAINER_NAME=$(basename `git rev-parse --show-toplevel`)
-popd &>/dev/null
+$(dirname $0)/start_core.sh "verilator $*"
 
-$(dirname $0)/start_core.sh $REPOROOT $CONTAINER_NAME
-
-docker exec -t $CONTAINER_NAME bash -c "verilator $*"
 
