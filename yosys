@@ -10,9 +10,10 @@ fi
 pushd $(dirname $0) &>/dev/null
 REPOROOT=$(git rev-parse --show-toplevel)
 CONTAINER_NAME=$(basename `git rev-parse --show-toplevel`)
+echo "ROOT=$REPOROOT CONT=$CONTAINER_NAME"
 popd &>/dev/null
 
-if [[ "$(docker ps -f name=$CONTAINER_NAME | sed -n '1!p')" == "" ]]; then 
+if [[ "$(docker ps -f name=^${CONTAINER_NAME}$$ | sed -n '1!p')" == "" ]]; then 
     echo "Creating container ..."
     docker run -w $REPOROOT --user $(id -u $(whoami)) -i -t -d -v $REPOROOT:$REPOROOT --name=$CONTAINER_NAME $DOCKERTAG > /dev/null
 fi
