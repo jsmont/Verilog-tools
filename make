@@ -1,0 +1,5 @@
+#!/bin/bash
+
+$(dirname $0)/start_core.sh "make $*"
+
+
