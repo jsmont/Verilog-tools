@@ -8,7 +8,7 @@ if [ -z "$REPOROOT" ]; then
     REPOROOT=$(git rev-parse --show-toplevel)
 fi
 echo "REPOROOT=$REPOROOT"
-CONTAINER_NAME=$(basename `git rev-parse --show-toplevel`)
+CONTAINER_NAME=$(basename $REPOROOT)
 popd &>/dev/null
 
 export DOCKERTAG="jsola/verilog-tools:latest"
